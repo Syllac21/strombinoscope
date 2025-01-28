@@ -7,7 +7,35 @@
     <title>Strombinoscope</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <div>
+            <h1>Trombinoscope de l'école du numérique</h1>
+        </div>
+        <form action="#" method="POST">
+            <div>
+                <label for="promo">Promotion</label>
+                <select name="promo" id="promo">
+                    <option value="">---</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" name="search" id="search" placeholder="&#128269; rechercher">
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Profil</legend>
+                    <label for="front">front</label>
+                    <input type="checkbox" name="front" id="front" value="front">
+                    <label for="back">back</label>
+                    <input type="checkbox" name="back" id="back" value="back">
+                </fieldset>
+            </div>
+        </form>
+    </header>
     <main></main>
+    <script src="./src/script/script.js"></script>
 </body>
 </html>

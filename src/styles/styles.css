@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    background-color: darkgrey;
+    padding: 5px;
+    margin: 0 50px 10px 50px;
+}
+form{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+}
+
+#search{
+    width: 80%;
+}
+
+#search{
+    padding: 3px;
+    border-radius: 30px;
+}
+
+fieldset{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
