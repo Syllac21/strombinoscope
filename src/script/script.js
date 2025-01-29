@@ -49,3 +49,43 @@ function createCard(stagiaire){
     // ListStagiaires.forEach(stagiaire => {
     //             let apprenant = {"nom"=> stagiaire.nom}
     // });
+
+
+    async function fetchCompetences() {
+        try {
+            const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/competences');
+            return response.json();
+        } catch (error) {
+            console.error("Error fetching promotions:", error);
+        }
+    }
+
+    
+    async function filterCompetences() {
+        const competences = await fetchCompetences();
+
+        // const frontChecked = document.getElementById("front").checked;
+        // const backChecked = document.getElementById("back").checked;
+
+        // const filtered = promotions.filter(promo => {
+        //     if (frontChecked && promo.slug.includes("front")) return true;
+        //     if (backChecked && promo.slug.includes("back")) return true;
+        //     return !frontChecked && !backChecked; 
+        // });
+
+        
+        const resultContainer = document.getElementById("result-container");
+        resultContainer.innerHTML = competences
+            .map(competence => `<label>${competence.name}</label>
+            <input type="checkbox" id="competence-${competence.name}" name="${competence.name}" value="${competence.name}" class="check">
+            `)
+        .join("<br>");
+}
+
+    
+    // document.getElementById("front").addEventListener("change", filterPromotions);
+    // document.getElementById("back").addEventListener("change", filterPromotions);
+
+    
+    filterCompetences();
+    
