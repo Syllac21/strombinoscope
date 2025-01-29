@@ -1,6 +1,15 @@
 const select = document.getElementById('select');
+const searchbar = document.getElementById('search');
 let filterComp = [];
 let filterPromo = '';
+let filterText ='';
+
+//écouter la searchbar
+searchbar.addEventListener('input',()=>{
+    filterText = searchbar.value;
+    console.log(filterText);
+    filterStudent();
+})
 
 // récupération des promotions
 async function fetchPromo() {
@@ -143,11 +152,13 @@ async function filterStudent() {
 
         // Filtrer par promotion
         if (filterPromo !== '') {
-            list.forEach((stagiaire)=>{
-                console.log(Number(filterPromo),stagiaire.promotions[0])
                 list = list.filter(stagiaire => stagiaire.promotions[0] === Number(filterPromo));
-                
-            })
+        }
+
+        //Filtrer par texte
+        if(filterText !== ''){
+
+            list = list.filter(stagiaire=>stagiaire.nom.includes(filterText));
         }
 
         // Affichage de la liste filtrée
