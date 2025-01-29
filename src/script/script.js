@@ -19,7 +19,7 @@ fetchCat().then((listPromo) => {
 
 // recupérer la liste des stagiaires
 async function recupList() {
-    const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants');
+    const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants?per-page=100');
     const ListStagiaires = await reponse.json();
     console.log(ListStagiaires);
 }
@@ -28,6 +28,4 @@ recupList().then((ListStagiaires)=>{
     let table = [];
 
 })
-    // ListStagiaires.forEach(stagiaire => {
-    //             let apprenant = {"nom"=> stagiaire.nom}
-    // });
+
