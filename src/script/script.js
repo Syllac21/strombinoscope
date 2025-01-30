@@ -39,8 +39,10 @@ function createCard(stagiaire, competences, listPromo){
                     <img src="${stagiaire.image}" alt="${stagiaire.nom}">
                     <p>${stagiaire.excerpt.rendered}</p>
                     <p>compétences : ${listeComp(competences,stagiaire.competences)}</p>
-                    <button type="button" class="portfolio">Portfolio</button>
-                    <button type="button" class="cv">cv</button>
+                    <a href=${stagiaire.portfolio} target="_blank">Portfolio</a>
+                    
+                    ${stagiaire.cv?`<a href=${stagiaire.cv} target="_blank">CV</a>`:''}
+                    
                     
                 </div>`;
         return textCard;
@@ -90,7 +92,7 @@ async function filterCompetences(listStagiaires, competences, listPromo) {
         .map(competence => `<label>${competence.name}</label>
         <input type="checkbox" id="competence-${competence.name}" name="${competence.name}" value="${competence.id}" class="check">
         `)
-    .join("<br>");
+    .join("");
 
     //écouter les checkbox et filtrer
     const checkbox = document.querySelectorAll('.check');
@@ -127,7 +129,9 @@ async function filterCompetences(listStagiaires, competences, listPromo) {
     //écouter la searchbar
     searchbar.addEventListener('input',()=>{
     filterText = searchbar.value;
-    filterStudent(listStagiaires,competences,listPromo);
+    setTimeout(()=>{
+        filterStudent(listStagiaires,competences,listPromo);
+    },500);
 })
 }
 
