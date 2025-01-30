@@ -4,13 +4,6 @@ let filterComp = [];
 let filterPromo = '';
 let filterText ='';
 
-//écouter la searchbar
-searchbar.addEventListener('input',()=>{
-    filterText = searchbar.value;
-    console.log(filterText);
-    filterStudent();
-})
-
 // récupération des promotions
 async function fetchPromo() {
     const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
@@ -19,44 +12,22 @@ async function fetchPromo() {
     
 }
 
-// selecteur de promotion
-fetchPromo().then((listPromo) => {
-    // const options = listPromo.map(promo => promo.slug);
-    console.log(listPromo);
-    const optionsText = listPromo.map(promo =>`<option value = "${promo.id}">${promo.slug}</option>`).join('');
-
-    const textSelector = `<select name="promotions" id="promotions">
-        <option value="">---</option>
-        ${optionsText}</select>`;
-    select.innerHTML = textSelector;
-    //écouter la liste déroulante et filtrer
-    const selectPromo = document.getElementById('promotions');
-    selectPromo.addEventListener('change', ()=>{
-       
-            filterPromo = selectPromo.value;
-            console.log(filterPromo);
-            filterStudent();
-        
-    })
-})
-
 // recupérer la liste des stagiaires
 async function recupList() {
     const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants/?per_page=100');
     const listStagiaires = await reponse.json();
-    // console.log(listStagiaires);
     return listStagiaires;
 }
 
-filterCompetences();
+
 recupList().then((listStagiaires)=>{
     const grid = document.getElementById('grid');
     fetchCompetences().then((competences)=>{
         listStagiaires.forEach(stagiaire => {
             fetchPromo().then((listPromo)=>{
                 grid.innerHTML+=createCard(stagiaire, competences, listPromo);
+                filterCompetences(listStagiaires, competences, listPromo);
             })
-            // console.log(stagiaire.nom);
         });
     })
     
@@ -74,9 +45,9 @@ function createCard(stagiaire, competences, listPromo){
                 </div>`;
         return textCard;
 }
+
 function textPromo(listPromo,promo){
     let slugPromo = '';
-    // console.log(listPromo);
     listPromo.forEach((promotion)=>{
         if(promotion.id === promo[0]){
             slugPromo = promotion.slug;
@@ -111,8 +82,9 @@ async function fetchCompetences() {
 }
 
 //afficher la liste des compétences
-async function filterCompetences() {
-    const competences = await fetchCompetences();
+async function filterCompetences(listStagiaires, competences, listPromo) {
+
+    // const competences = await fetchCompetences();
     const resultContainer = document.getElementById("result-container");
     resultContainer.innerHTML = competences
         .map(competence => `<label>${competence.name}</label>
@@ -126,21 +98,47 @@ async function filterCompetences() {
         check.addEventListener('change',()=>{
             if(check.checked){
                 filterComp.push(check.value);
-                filterStudent();
+                filterStudent(listStagiaires,competences,listPromo);
             }else{
                 filterComp = filterComp.filter(function(f){return f !== check.value});
-                filterStudent();
+                filterStudent(listStagiaires,competences,listPromo);
             }
         })
     })
+
+    //création du sélécteur de promo
+    const optionsText = listPromo.map(promo =>`<option value = "${promo.id}">${promo.slug}</option>`).join('');
+
+    const textSelector = `<select name="promotions" id="promotions">
+        <option value="">---</option>
+        ${optionsText}</select>`;
+    select.innerHTML = textSelector;
+
+    //écouter la liste déroulante et filtrer
+    const selectPromo = document.getElementById('promotions');
+    selectPromo.addEventListener('change', ()=>{
+       
+            filterPromo = selectPromo.value;
+            console.log(filterPromo);
+            filterStudent(listStagiaires,competences,listPromo);
+        
+    })
+
+    //écouter la searchbar
+    searchbar.addEventListener('input',()=>{
+    filterText = searchbar.value;
+    filterStudent(listStagiaires,competences,listPromo);
+})
 }
 
 
 
 // filtre de la liste
-async function filterStudent() {
+function filterStudent(listStagiaires,competences,listPromo) {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
     try {
-        const listStagiaires = await recupList();
+        // const listStagiaires = await recupList();
         let list = listStagiaires;
 
         // Filtrer par compétences
@@ -157,15 +155,12 @@ async function filterStudent() {
 
         //Filtrer par texte
         if(filterText !== ''){
-
-            list = list.filter(stagiaire=>stagiaire.nom.includes(filterText));
+            const filterTextMin = filterText.toLowerCase();
+            list = list.filter(stagiaire =>stagiaire.slug.includes(filterTextMin));
+            console.log(list);
         }
 
         // Affichage de la liste filtrée
-        const grid = document.getElementById('grid');
-        grid.innerHTML = '';
-        const competences = await fetchCompetences();
-        const listPromo = await fetchPromo();
 
         list.forEach(stagiaire => {
             grid.innerHTML += createCard(stagiaire, competences, listPromo);
