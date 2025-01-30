@@ -7,8 +7,12 @@ header{
 }
 .container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+    margin-bottom: 80px;
+    
 }
+
 
 .card img{
     background-color: bisque;
@@ -49,8 +53,8 @@ header{
 
 h1{
     text-align: center;
-    background-color: darkgrey;
-    padding: 5px;
+    background-color: bisque;
+    padding: 15px;
     margin: 0 50px 10px 50px;
 }
 form{
@@ -61,18 +65,99 @@ form{
 
 #search{
     width: 80%;
-}
-
-#search{
     padding: 3px;
     border-radius: 30px;
 }
 
+
 fieldset{
     text-align: center;
-    display: flex;
-    flex-direction: column;
     font-size: small;
-    width: 30%;
-    margin:auto;
+    margin-left:200px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-right: 50px;
 }
+
+#result-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+.promo{
+    margin-left: 60px;
+}
+
+
+
+/* Tablettes */
+@media screen and (min-width: 470px) and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5px;
+        margin-bottom: 40px;
+        
+    }
+
+    .card {
+        width: 100%; 
+        max-width: 400px; 
+        justify-self: center;
+    }
+
+    h1{
+        margin: 0;
+        font-size: large;
+    }  
+
+    .promo{
+        margin-left: 0;
+
+        
+        
+
+    }
+
+    #search{
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        
+        
+        
+    }
+
+    #select{
+        margin-left: 0;
+        margin-top: 20px;
+        
+        
+        
+
+    }
+    
+    
+    form {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background:white;
+        border-radius: 10px;
+        margin-left: 5px;
+        margin-right: 10px; 
+    }
+
+    fieldset{
+        margin-left: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+
+

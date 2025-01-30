@@ -1,24 +1,15 @@
-const select = document.getElementById('select');
+// const select = document.getElementById('select');
 
-// récupération des catégories
-async function fetchPromo() {
-    const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
-    const listPromo = await reponse.json();
-    return listPromo;
-    
-}
+// // selecteur de catégorie
+// fetchPromo().then((listPromo) => {
+//     const options = listPromo.map(promo => promo.slug);
+//     const optionsText = options.map(promo =>`<option value = "${promo}">${promo}</option>`).join('');
 
-// selecteur de catégorie
-fetchPromo().then((listPromo) => {
-    // console.log(listPromo[0]);
-    const options = listPromo.map(promo => promo.slug);
-    const optionsText = options.map(promo =>`<option value = "${promo}">${promo}</option>`).join('');
-
-    const textSelector = `<select name="categories" id="categories">
-        <option value="">---</option>
-        ${optionsText}</select>`;
-    select.innerHTML = textSelector;
-})
+//     const textSelector = `<select name="categories" id="categories">
+//         <option value="">---</option>
+//         ${optionsText}</select>`;
+//     select.innerHTML = textSelector;
+// })
 
 // recupérer la liste des stagiaires
 async function recupList() {
@@ -35,9 +26,10 @@ recupList().then((listStagiaires)=>{
     });
 })
 
+
 function createCard(stagiaire){
         let textCard =`<div class="card">
-                    <h4>${stagiaire.prenom} ${stagiaire.nom}  2024</h4>
+                    <h4>${stagiaire.prenom} ${stagiaire.nom}  ${stagiaire.promo ? stagiaire.promo.slug : ''}</h4>
                     <img src="${stagiaire.image}" alt="${stagiaire.nom}">
                     <p>${stagiaire.excerpt.rendered}</p>
                     <button type="button" class="portfolio">Portfolio</button>
@@ -46,9 +38,7 @@ function createCard(stagiaire){
                 </div>`;
         return textCard;
 }
-    // ListStagiaires.forEach(stagiaire => {
-    //             let apprenant = {"nom"=> stagiaire.nom}
-    // });
+
 
 
     async function fetchCompetences() {
@@ -76,10 +66,10 @@ function createCard(stagiaire){
         
         const resultContainer = document.getElementById("result-container");
         resultContainer.innerHTML = competences
-            .map(competence => `<label>${competence.name}</label>
-            <input type="checkbox" id="competence-${competence.name}" name="${competence.name}" value="${competence.name}" class="check">
+            .map(competence => `<div><label>${competence.name}</label>
+            <input type="checkbox" id="competence-${competence.name}" name="${competence.name}" value="${competence.name}" class="check"></div>
             `)
-        .join("<br>");
+        .join("");
 }
 
     
@@ -88,4 +78,111 @@ function createCard(stagiaire){
 
     
     filterCompetences();
+
+
+
+
+    async function fetchPromo(){
+        try{
+            const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
+            const promotions = await response.json();
+            const listPromo =[]
+
+            promotions.forEach(promo => {
+
+                listPromo.push({
+                    id: promo.id,
+                    slug: promo.slug
+                });
+            });
+            console.log(listPromo);
+            return listPromo;
+        }catch (error){
+            console.log("Error fetching promotion:",error);
+        }
+    }
+
+
     
+    let filterPromo = '';
+    let listStagiaires = []; 
+
+
+    async function fetchPromo() {
+        const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
+        return response.json();
+    }
+
+
+    
+
+
+    const select = document.getElementById('select');
+
+    fetchPromo().then((listPromo) => {
+        listPromo.forEach(promo => {
+            const option = document.createElement('option');
+            console.log(promo);
+            option.setAttribute('value', promo.id)
+            // option.value = promo.slug;
+            option.textContent = promo.slug;
+            select.appendChild(option);
+            select.appendChild(option);
+        });
+    });
+
+
+
+
+    async function fetchStagiers() {
+        const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants/?per_page=100');
+        return response.json();  // Fetch stagiers
+    }
+
+    
+    fetchStagiers().then((stagiers) => {
+        listStagiaires = stagiers; 
+        
+        const grid = document.getElementById('grid');
+        grid.innerHTML ='';
+        listStagiaires.forEach(stagiaire => {
+            grid.innerHTML += createCard(stagiaire);  
+        });
+
+    select.addEventListener('change', (event) => {
+        const selectedId = event.target.value;
+        filterPromo = selectedId;
+        filterList(listStagiaires, filterPromo);
+    });
+});
+
+
+    function filterList(listStagiaires, filterPromo) {
+        const filteredList = [];
+        const grid = document.getElementById('grid');
+        grid.innerHTML = '';
+    
+        for (let i = 0; i < listStagiaires.length; i++) {
+            const stagiaire = listStagiaires[i];
+    
+            if (stagiaire.promotions[0] === Number(filterPromo)) {
+                console.log('ok')
+                filteredList.push(stagiaire);
+            }
+        }
+        console.log("Filtered List:", filteredList);
+        filteredList.forEach(stagiaire => {
+            grid.innerHTML += createCard(stagiaire);  
+        });
+    }
+
+
+
+    
+
+
+    
+
+
+
+

@@ -13,23 +13,25 @@
         </div>
         <form action="#" method="POST">
             <div>
-                <label for="promo">Promotion</label>
-                <div id="select">
-
-                </div>
+                <label for="promo" class="promo">Promotion</label>
+                <select id="select">
+                    <option value="">---</option>
+                </select>
             </div>
-            <div>
-                <input type="text" name="search" id="search" placeholder="&#128269; rechercher">
-            </div>
+            
             <div>
                 <fieldset>
-                    <legend>Profil</legend>
+                    <legend class="profil">Profil</legend>
                     <!-- <label for="front">front</label>
                     <input type="checkbox" name="front" id="front" value="front">
                     <label for="back">back</label>
                     <input type="checkbox" name="back" id="back" value="back"> -->
                     <div id="result-container"></div>
                 </fieldset>
+            </div>
+
+            <div>
+                <input type="text" name="search" id="search" placeholder="&#128269; rechercher">
             </div>
         </form>
     </header>
