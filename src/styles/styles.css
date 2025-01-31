@@ -105,6 +105,13 @@
         margin-right: 5px;
     }
 
+    h1{
+        text-align: center;
+        background-color: bisque;
+        padding: 15px;
+        margin: 20px 10px 30px;
+    }
+
     .promo{
         margin-left: 0;
     }
