@@ -95,8 +95,7 @@
         flex-direction: column;
         justify-content: center;
         margin-left: 5px;
-        margin-bottom: 40px;
-        
+        margin-bottom: 40px;   
     }
 
     .card {
@@ -120,16 +119,12 @@
         width: 100%;
         margin-top: 10px;
         margin-bottom: 20px;
-        
-        
-        
     }
 
     #select{
         margin-left: 0;
         margin-top: 20px;
     }
-    
     
     form {
         margin-top: 30px;
