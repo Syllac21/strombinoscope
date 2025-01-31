@@ -6,7 +6,8 @@ let filterText ='';
 
 // récupération des promotions
 async function fetchPromo() {
-    const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
+    const reponse = await fetch('https://api-trombi.webedy.fr/wp-json/wp/v2/promotions/');
+    
     const listPromo = await reponse.json();
     return listPromo;
     
@@ -14,7 +15,8 @@ async function fetchPromo() {
 
 // recupérer la liste des stagiaires
 async function recupList() {
-    const reponse = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants/?per_page=100');
+    
+    const reponse = await fetch('https://api-trombi.webedy.fr/wp-json/wp/v2/apprenants/?per_page=100');
     const listStagiaires = await reponse.json();
     return listStagiaires;
 }
@@ -76,7 +78,7 @@ function listeComp(competences, comps){
 //récupérer la liste des compétences
 async function fetchCompetences() {
     try {
-        const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/competences');
+        const response = await fetch('https://api-trombi.webedy.fr/wp-json/wp/v2/competences/');
         return response.json();
     } catch (error) {
         console.error("Error fetching promotions:", error);
