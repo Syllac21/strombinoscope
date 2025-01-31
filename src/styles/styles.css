@@ -1,28 +1,26 @@
-body{
-      background-color: burlywood;
-} 
+    body{
+        background-color: burlywood;
+    } 
 
-header{
+    header{
     margin-bottom: 5px;
-}
-.container{
+    }
+
+    .container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 80px;
-    margin-bottom: 80px;
-    
-}
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    }
 
-
-.card img{
+    .card img{
     background-color: bisque;
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
-}
-.card{
-    height: 100%;
+    }
+    .card{
+    height: auto;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
@@ -31,69 +29,67 @@ header{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     max-width: 300px;
     justify-self: center;
-}
+    }
 
-.card:hover {
+    .card:hover {
     transform: translateY(-5px); 
-}
+    }
 
-.card p {
+    .card p {
     font-size: 1rem;
     color: #666;
     margin-bottom: 15px;
     margin-top: 15px;
-}
+    }
 
-.card button{
+    .card a{
     padding: 10px 20px;
     background-color:bisque ;
     border-radius: 10px;
     cursor: pointer;
-}
+    text-decoration: none;
+    color: #666;
+    margin-top: 3px;
+    }
 
-h1{
+    h1{
     text-align: center;
     background-color: bisque;
     padding: 15px;
     margin: 0 50px 10px 50px;
-}
-form{
+    }
+    form{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     align-items: center;
-}
+    margin: 0 50px 10px 50px;
 
-#search{
+    }
+
+    #search{
     width: 80%;
     padding: 3px;
     border-radius: 30px;
-}
+    }
 
-
-fieldset{
+    fieldset{
     text-align: center;
+    /* display: flex;
+    flex-direction: column; */
     font-size: small;
+    /* width: 30%; */
     margin-left:200px;
     margin-bottom: 50px;
     margin-top: 50px;
     margin-right: 50px;
-}
-
-#result-container{
+    }
+    #result-container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
+    grid-template-columns: repeat(8,1fr);
+    column-gap: 3px;
+    }
 
-
-
-.promo{
-    margin-left: 60px;
-}
-
-
-
-/* Tablettes */
-@media screen and (min-width: 470px) and (max-width: 768px) {
+    @media screen and (max-width: 768px) {
     .container {
         display: flex;
         flex-direction: column;
@@ -104,22 +100,13 @@ fieldset{
     }
 
     .card {
-        width: 100%; 
         max-width: 400px; 
         justify-self: center;
+        margin-right: 5px;
     }
-
-    h1{
-        margin: 0;
-        font-size: large;
-    }  
 
     .promo{
         margin-left: 0;
-
-        
-        
-
     }
 
     #search{
@@ -149,15 +136,11 @@ fieldset{
         background:white;
         border-radius: 10px;
         margin-left: 5px;
-        margin-right: 10px; 
+        margin-right: 5px; 
     }
 
     fieldset{
-        margin-left: 0;
-        width: 100%;
+        margin-left: 3rem;
         margin-top: 0;
     }
-}
-
-
-
+    }
