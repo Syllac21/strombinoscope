@@ -1,99 +1,149 @@
-body{
-    background-color: burlywood;
-} 
+    body{
+        background-color: burlywood;
+    } 
 
-header{
-  margin-bottom: 5px;
-}
-.container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-}
+    header{
+    margin-bottom: 5px;
+    }
 
-.card img{
-  background-color: bisque;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-.card{
-  height: auto;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 300px;
-  justify-self: center;
-}
-
-.card:hover {
-  transform: translateY(-5px); 
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
-.card a{
-  padding: 10px 20px;
-  background-color:bisque ;
-  border-radius: 10px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #666;
-  margin-top: 3px;
-}
-
-h1{
-  text-align: center;
-  background-color: darkgrey;
-  padding: 5px;
-  margin: 0 50px 10px 50px;
-}
-form{
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  align-items: center;
-}
-
-#search{
-  width: 80%;
-  padding: 3px;
-  border-radius: 30px;
-}
-
-fieldset{
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: small;
-  width: 30%;
-  margin:auto;
-}
-#result-container{
+    .container{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-}
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    }
 
-@media (max-width: 768px) {
-    .container {
-        display: flex;
-        flex-direction: column; /* ou row, selon votre besoin */
-        align-items: center; /* ou flex-start, flex-end, etc. */
-        justify-content: center; /* ou flex-start, flex-end, etc. */
+    .card img{
+    background-color: bisque;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    }
+    .card{
+    height: auto;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    justify-self: center;
+    }
+
+    .card:hover {
+    transform: translateY(-5px); 
+    }
+
+    .card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    }
+
+    .card a{
+    padding: 10px 20px;
+    background-color:bisque ;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666;
+    margin-top: 3px;
+    }
+
+    h1{
+    text-align: center;
+    background-color: bisque;
+    padding: 15px;
+    margin: 0 50px 10px 50px;
     }
     form{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    margin: 0 50px 10px 50px;
+
+    }
+
+    #search{
+    width: 80%;
+    padding: 3px;
+    border-radius: 30px;
+    }
+
+    fieldset{
+    text-align: center;
+    /* display: flex;
+    flex-direction: column; */
+    font-size: small;
+    /* width: 30%; */
+    margin-left:200px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-right: 50px;
+    }
+    #result-container{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    column-gap: 3px;
+    }
+
+    @media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5px;
+        margin-bottom: 40px;
+        
+    }
+
+    .card {
+        max-width: 400px; 
+        justify-self: center;
+        margin-right: 5px;
+    }
+
+    h1{
+        text-align: center;
+        background-color: bisque;
+        padding: 14px;
+        margin: 20px 10px 30px;
+    }
+
+    .promo{
+        margin-left: 0;
+    }
+
+    #search{
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        
+        
+        
+    }
+
+    #select{
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    
+    
+    form {
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        align-items: center;
-        justify-content: center;
+        background:white;
+        border-radius: 10px;
+        margin-left: 5px;
+        margin-right: 5px; 
     }
-}
+
+    fieldset{
+        margin-left: 3rem;
+        margin-top: 0;
+    }
+    }
