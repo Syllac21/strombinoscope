@@ -107,15 +107,10 @@ function createCard(stagiaire){
     let filterPromo = '';
     let listStagiaires = []; 
 
-
     async function fetchPromo() {
         const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/promotions');
         return response.json();
     }
-
-
-    
-
 
     const select = document.getElementById('select');
 
@@ -130,9 +125,6 @@ function createCard(stagiaire){
             select.appendChild(option);
         });
     });
-
-
-
 
     async function fetchStagiers() {
         const response = await fetch('http://portfolios.ruki5964.odns.fr/wp-json/wp/v2/apprenants/?per_page=100');

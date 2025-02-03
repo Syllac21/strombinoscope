@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "73d132f3-ac52-40e9-b90e-96dc622cbe95",
+		"name": "biref3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41611162"
+	},
+	"item": [
+		{
+			"name": "ListStagiaires",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-trombi.webedy.fr/wp-json/wp/v2/apprenants/?per_page=100",
+					"protocol": "https",
+					"host": [
+						"api-trombi",
+						"webedy",
+						"fr"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"apprenants",
+						""
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListCompetences",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-trombi.webedy.fr/wp-json/wp/v2/competences/",
+					"protocol": "https",
+					"host": [
+						"api-trombi",
+						"webedy",
+						"fr"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"competences",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListPromotion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-trombi.webedy.fr/wp-json/wp/v2/promotions/",
+					"protocol": "https",
+					"host": [
+						"api-trombi",
+						"webedy",
+						"fr"
+					],
+					"path": [
+						"wp-json",
+						"wp",
+						"v2",
+						"promotions",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
