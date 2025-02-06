@@ -1,0 +1,1 @@
+voir pour mettre la construction du selecteur de promo sans refaire un fetch
